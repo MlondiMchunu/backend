@@ -7,7 +7,7 @@ if (process.argv.length < 3){
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://mlondiemchunu1:Maxingwane12@cluster0.oveo9.mongodb.net/`
+const url = `mongodb+srv://mlondiemchunu1:${password}@cluster0.oveo9.mongodb.net/`
 
 mongoose.set('strictQuery',false)
 
@@ -17,3 +17,5 @@ const noteSchema = new mongoose.Schema({
     content: String,
     important: Boolean,
 })
+
+const Note = mongoose.model
