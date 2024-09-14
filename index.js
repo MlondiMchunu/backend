@@ -99,7 +99,7 @@ app.post('./api/notes',(req,res)=>{
 const password = process.argv[2]
 
 //do not save password to gitHub!!!
-const url = `mongodb+srv://mlondiemchunu1:${password}@cluster0.oveo9.mongodb.net/noteApp?retryWrites=true&w=majority`
+const url = process.env.MONGODB_URI
 
 mongoose.set('strictQuery',false)
 mongoose.connect(url)
