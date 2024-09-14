@@ -21,8 +21,8 @@ const noteSchema = new mongoose.Schema({
 const Note = mongoose.model('Note',noteSchema)
 
 const note = new Note({
-    content: 'I love MERN',
-    important:true,
+    content: 'I will be good in MERN stack',
+    important: false,
 })
 
 /*Note.find({}).then(result =>{
