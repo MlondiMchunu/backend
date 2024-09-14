@@ -8,6 +8,23 @@ const mongoose = require('mongoose')
 app.use(cors())
 app.use(express.static('dist'))
 
+const password = process.argv[2]
+
+//do not save password to gitHub!!!
+const url = process.env.MONGODB_URI
+
+mongoose.set('strictQuery',false)
+mongoose.connect(url)
+
+const noteSchema = new mongoose.Schema({
+    content: String,
+    important: Boolean
+})
+
+const Note = mongoose.model('Note',noteSchema)
+
+const PORT = process.env.PORT || 3002
+
 let notes = [
     {
         id: '1',
@@ -43,6 +60,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/notes', (req, res) => {
+    Note.
     res.json(notes)
 })
 
@@ -96,22 +114,6 @@ app.post('./api/notes',(req,res)=>{
     res.json(note)
 })
 
-const password = process.argv[2]
-
-//do not save password to gitHub!!!
-const url = process.env.MONGODB_URI
-
-mongoose.set('strictQuery',false)
-mongoose.connect(url)
-
-const noteSchema = new mongoose.Schema({
-    content: String,
-    important: Boolean
-})
-
-const Note = mongoose.model('Note',noteSchema)
-
-const PORT = process.env.PORT || 3002
 //app.listen(PORT)
 
 app.listen(PORT, () => {
