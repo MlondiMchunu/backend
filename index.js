@@ -102,6 +102,14 @@ const password = process.argv[2]
 const url = `mongodb+srv://mlondiemchunu1:${password}@cluster0.oveo9.mongodb.net/noteApp?retryWrites=true&w=majority`
 
 mongoose.set('strictQuery',false)
+mongoose.connect(url)
+
+const noteSchema = new mongoose.Schema({
+    content: String,
+    important: Boolean
+})
+
+const Note = mongoose.model('Note',noteSchema)
 
 const PORT = process.env.PORT || 3002
 //app.listen(PORT)
