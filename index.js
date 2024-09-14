@@ -3,6 +3,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const mongoose = require('mongoose')
 
 app.use(cors())
 app.use(express.static('dist'))
@@ -95,6 +96,12 @@ app.post('./api/notes',(req,res)=>{
     res.json(note)
 })
 
+const password = process.argv[2]
+
+//do not save password to gitHub!!!
+const url = `mongodb+srv://mlondiemchunu1:${password}@cluster0.oveo9.mongodb.net/noteApp?retryWrites=true&w=majority`
+
+mongoose.set('strictQuery',false)
 
 const PORT = process.env.PORT || 3002
 //app.listen(PORT)
