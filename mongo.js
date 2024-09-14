@@ -26,7 +26,7 @@ const Note = mongoose.model('Note',noteSchema)
 })
 */
 Note.find({}).then(result =>{
-    result.forEach(note =>{
+    result.map(note =>{
         console.log(note)
     })
 })
