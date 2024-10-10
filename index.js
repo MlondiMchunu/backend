@@ -127,6 +127,8 @@ const errorHandler = (error, req, res, next)=>{
     }
     next(error)
 }
+
+//error handling middlerware has to be the last loaded middleware
 app.use(errorHandler)
 
 
