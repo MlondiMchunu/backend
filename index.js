@@ -116,10 +116,7 @@ app.get('/api/notes/:id',(req,res,next)=>{
                 res.status(404).end()
             }
     })
-        .catch(error=>{
-            console.log(error)
-            res.status(error => next(error))//next function passes the error forward
-        })
+        .catch(error=>next(error))
 })
 
 
