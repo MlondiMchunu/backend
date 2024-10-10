@@ -50,14 +50,8 @@ app.get('/', (req, res) => {
     res.send('<h4>Hello from Server!!</h4>')
 })
 
-app.get('/api/notes', (req, res) => {
-    Note.find({}).then(notes=>{
-        res.json(notes)
 
-    })
-    
-})
-
+/*
 app.get('/api/notes/:id', (req, res) => {
     const id = req.params.id
     const note = notes.find(note => note.id === id)
@@ -67,7 +61,7 @@ app.get('/api/notes/:id', (req, res) => {
     } else {
         res.status(404).send('Note not found')
     }
-})
+})*/
 
 /**Deleting Resources!! */
 app.delete('/api/notes/:id',(req,res)=>{
@@ -110,6 +104,14 @@ app.post('/api/notes',(req,res)=>{
     note.save().then(savedNote=>{
         res.json(savedNote)
     })
+})
+
+
+app.get('/api/notes/:id',(req,res)=>{
+    Note.findById(req.params.id).then(note=>{
+        res.json(note)
+    })
+    
 })
 
 
