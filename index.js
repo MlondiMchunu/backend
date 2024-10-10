@@ -111,7 +111,7 @@ app.get('/api/notes/:id',(req,res,next)=>{
     Note.findById(req.params.id)
         .then(note=>{
             if(note){
-                response.json(note)
+                res.json(note)
             }else{
                 res.status(404).end()
             }
@@ -128,6 +128,7 @@ const errorHandler = (error, req, res, next)=>{
     next(error)
 }
 app.use(errorHandler)
+
 
 
 //another postman code
