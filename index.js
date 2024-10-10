@@ -21,7 +21,7 @@ const noteSchema = new mongoose.Schema({
     important: Boolean,
 })
 
-const NOte = mongoose.model('Note',noteSchema)
+const Note = mongoose.model('Note',noteSchema)
 
 const PORT = process.env.PORT || 3002
 
