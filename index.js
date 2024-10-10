@@ -1,4 +1,5 @@
 //const http = require('http')
+const Note = require('./models/note')
 
 const express = require('express')
 const app = express()
@@ -10,8 +11,7 @@ app.use(express.static('dist'))
 
 const password = process.argv[2]
 
-mongoose.set('strictQuery',false)
-mongoose.connect('mongodb+srv://mlondiemchunu1:Maxingwane12@cluster0.oveo9.mongodb.net/noteApp?retryWrites=true&w=majority')
+
 
 const PORT = process.env.PORT || 3002
 
