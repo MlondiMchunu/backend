@@ -11,10 +11,10 @@ app.use(express.static('dist'))
 const password = process.argv[2]
 
 //do not save password to gitHub!!!
-const url = process.env.MONGODB_URI
+const url = process.env.MONGODB_URI;
 
 mongoose.set('strictQuery',false)
-mongoose.connect(url)
+mongoose.connect('mongodb+srv://mlondiemchunu1:Maxingwane12@cluster0.oveo9.mongodb.net/noteApp?retryWrites=true&w=majority')
 
 const noteSchema = new mongoose.Schema({
     content: String,
