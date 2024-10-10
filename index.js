@@ -118,7 +118,7 @@ app.get('/api/notes/:id',(req,res)=>{
     })
         .catch(error=>{
             console.log(error)
-            res.status(500).end()
+            res.status(400).send({error: 'malformed id'})
         })
 })
 
