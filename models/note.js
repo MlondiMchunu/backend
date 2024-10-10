@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
 require('dotenv').config();
+//do not save password to github
 const url = process.env.MONGODB_URI;
 
 console.log('connectiong to', url)
