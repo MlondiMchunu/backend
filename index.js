@@ -67,6 +67,14 @@ app.get('/api/notes', (req, res) => {
     
 })
 
+noteSchema.set('toJSON',{
+    transform: (document, returnedObject)=>{
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        delete returnedObject.__v
+    }
+})
+
 app.get('/api/notes/:id', (req, res) => {
     const id = req.params.id
     const note = notes.find(note => note.id === id)
