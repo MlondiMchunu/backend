@@ -18,10 +18,10 @@ mongoose.connect('mongodb+srv://mlondiemchunu1:Maxingwane12@cluster0.oveo9.mongo
 
 const noteSchema = new mongoose.Schema({
     content: String,
-    important: Boolean
+    important: Boolean,
 })
 
-const Note = mongoose.model('Note',noteSchema)
+const NOte = mongoose.model('Note',noteSchema)
 
 const PORT = process.env.PORT || 3002
 
