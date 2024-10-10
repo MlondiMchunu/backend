@@ -10,18 +10,8 @@ app.use(express.static('dist'))
 
 const password = process.argv[2]
 
-//do not save password to gitHub!!!
-const url = process.env.MONGODB_URI;
-
 mongoose.set('strictQuery',false)
 mongoose.connect('mongodb+srv://mlondiemchunu1:Maxingwane12@cluster0.oveo9.mongodb.net/noteApp?retryWrites=true&w=majority')
-
-const noteSchema = new mongoose.Schema({
-    content: String,
-    important: Boolean,
-})
-
-const Note = mongoose.model('Note',noteSchema)
 
 const PORT = process.env.PORT || 3002
 
@@ -65,14 +55,6 @@ app.get('/api/notes', (req, res) => {
 
     })
     
-})
-
-noteSchema.set('toJSON',{
-    transform: (document, returnedObject)=>{
-        returnedObject.id = returnedObject._id.toString()
-        delete returnedObject._id
-        delete returnedObject.__v
-    }
 })
 
 app.get('/api/notes/:id', (req, res) => {
