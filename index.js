@@ -1,4 +1,5 @@
 //const http = require('http')
+require('dotenv').config()
 const Note = require('./models/note')
 
 const express = require('express')
@@ -84,15 +85,28 @@ const generatedId =()=>{
         ? Math.max(...notes.map(n => Number(n.id)))
         : 0
 }
-
-app.post('./api/notes',(req,res)=>{
+//this is postman code
+/*app.post('./api/notes',(req,res)=>{
     const body = req.body
 
     if(!body.content){
         return res.status(400).json({
             error:'content missing'
         })
+    }*/
+
+app.post('/api/notes',(req,res)=>{
+    const body = req.body
+
+    if(body.content === undefined){
+        return res.status(400).json({error: 'content missing'})
     }
+
+    const note = new Note({
+        content: body.content,
+        important: body.important || false,
+    })
+})
 
     const note = {
         content: body.content,
