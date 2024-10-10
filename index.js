@@ -107,7 +107,7 @@ app.post('/api/notes',(req,res)=>{
 })
 
 
-app.get('/api/notes/:id',(req,res)=>{
+app.get('/api/notes/:id',(req,res,next)=>{
     Note.findById(req.params.id)
         .then(note=>{
             if(note){
@@ -118,7 +118,7 @@ app.get('/api/notes/:id',(req,res)=>{
     })
         .catch(error=>{
             console.log(error)
-            res.status(400).send({error: 'malformed id'})
+            res.status(error => next(error))//next function passes the error forward
         })
 })
 
