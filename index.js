@@ -115,9 +115,11 @@ app.get('/api/notes/:id',(req,res)=>{
             }else{
                 res.status(404).end()
             }
-
     })
-    
+        .catch(error=>{
+            console.log(error)
+            res.status(500).end()
+        })
 })
 
 
