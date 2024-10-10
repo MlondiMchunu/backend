@@ -106,9 +106,15 @@ app.post('/api/notes',(req,res)=>{
         content: body.content,
         important: body.important || false,
     })
+
+    note.save().then(savedNote=>{
+        res.json(savedNote)
+    })
 })
 
-    const note = {
+
+//another postman code
+   /* const note = {
         content: body.content,
         important: Boolean(body.important) || false,
         id: generatedId(),
@@ -119,7 +125,7 @@ app.post('/api/notes',(req,res)=>{
     //console.log(note)
     
     res.json(note)
-})
+})*/
 
 //app.listen(PORT)
 
