@@ -107,6 +107,10 @@ app.post('/api/notes',(req,res)=>{
         res.json(savedNote)
     })
 })
+const unknownEndpoint = (req, res)=>{
+    res.status(404).send({error:'unknown endpoint'})
+}
+app.use(unknownEndpoint)
 
 
 app.get('/api/notes/:id',(req,res,next)=>{
