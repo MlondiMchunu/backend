@@ -10,6 +10,10 @@ const mongoose = require('mongoose')
 app.use(cors())
 app.use(express.static('dist'))
 
+//adding data to server
+app.use(express.json())
+app.use(requestLogger)
+
 const password = process.argv[2]
 
 
@@ -71,8 +75,6 @@ app.delete('/api/notes/:id',(req,res)=>{
     res.status(204).send(`Note ${note} deleted`)
 })
 
-/**Adding Data to Server */
-app.use(express.json())
 
 const generatedId =()=>{
     const maxId = notes.length > 0
