@@ -108,8 +108,14 @@ app.post('/api/notes',(req,res)=>{
 
 
 app.get('/api/notes/:id',(req,res)=>{
-    Note.findById(req.params.id).then(note=>{
-        res.json(note)
+    Note.findById(req.params.id)
+        .then(note=>{
+            if(note){
+                response.json(note)
+            }else{
+                res.status(404).end()
+            }
+
     })
     
 })
