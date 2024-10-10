@@ -25,7 +25,7 @@ const Note = mongoose.model('Note',noteSchema)
     important: true,
 })
 */
-Note.find({}).then(result =>{
+Note.find({}).then(result =>{ //will get all the notes as parameter is an empty object
     result.forEach(note =>{
         console.log(note)
     })
