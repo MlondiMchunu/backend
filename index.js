@@ -119,6 +119,12 @@ app.get('/api/notes/:id',(req,res,next)=>{
         .catch(error=>next(error))
 })
 
+const errorHandler = (error, request, response, next)=>{
+    console.error(error.message)
+
+    
+}
+
 
 //another postman code
    /* const note = {
