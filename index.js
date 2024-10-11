@@ -130,6 +130,21 @@ app.delete('/api/notes/:id', (req, res, next) => {
         .catch(error => next(error))
 })
 
+app.put('/api/notes/:id',(req,res,next)=>{
+    const body = req.body
+
+    const note = {
+        content: body.content,
+        important: body.important,
+    }
+
+    Note.findByIdAndUpdate(req.params.id,note,{new:true})
+        .then(updateNote=>{
+            res.json(updatedNote)
+        })
+        .catch(error=>next(error))
+})
+
 const unknownEndpoint = (req, res) => {
     res.status(404).send({ error: 'unknown endpoint' })
 }
