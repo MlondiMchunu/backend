@@ -139,7 +139,7 @@ app.put('/api/notes/:id',(req,res,next)=>{
     }
 
     Note.findByIdAndUpdate(req.params.id,note,{new:true})
-        .then(updateNote=>{
+        .then(updatedNote=>{
             res.json(updatedNote)
         })
         .catch(error=>next(error))
