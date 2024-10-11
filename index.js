@@ -35,9 +35,9 @@ let notes = [
         id: '3',
         content: 'GET and POST are the most important methods of HTTP protocol',
         important: true
-    },{
-        id:'4',
-        content:'This is to test Render commit DEploys',
+    }, {
+        id: '4',
+        content: 'This is to test Render commit DEploys',
         important: true
     }
 ]
@@ -68,15 +68,15 @@ app.get('/api/notes/:id', (req, res) => {
 })*/
 
 /**Deleting Resources!! */
-app.delete('/api/notes/:id',(req,res)=>{
+app.delete('/api/notes/:id', (req, res) => {
     const id = req.params.id
-    const note = notes.filter(note=> note.id === id)
+    const note = notes.filter(note => note.id === id)
 
     res.status(204).send(`Note ${note} deleted`)
 })
 
 
-const generatedId =()=>{
+const generatedId = () => {
     const maxId = notes.length > 0
         ? Math.max(...notes.map(n => Number(n.id)))
         : 0
@@ -91,11 +91,11 @@ const generatedId =()=>{
         })
     }*/
 
-app.post('/api/notes',(req,res)=>{
+app.post('/api/notes', (req, res) => {
     const body = req.body
 
-    if(body.content === undefined){
-        return res.status(400).json({error: 'content missing'})
+    if (body.content === undefined) {
+        return res.status(400).json({ error: 'content missing' })
     }
 
     const note = new Note({
@@ -103,35 +103,43 @@ app.post('/api/notes',(req,res)=>{
         important: body.important || false,
     })
 
-    note.save().then(savedNote=>{
+    note.save().then(savedNote => {
         res.json(savedNote)
     })
 })
 
 
 
-app.get('/api/notes/:id',(req,res,next)=>{
+app.get('/api/notes/:id', (req, res, next) => {
     Note.findById(req.params.id)
-        .then(note=>{
-            if(note){
+        .then(note => {
+            if (note) {
                 res.json(note)
-            }else{
+            } else {
                 res.status(404).end()
             }
-    })
-        .catch(error=>next(error))
+        })
+        .catch(error => next(error))
 })
 
-const unknownEndpoint = (req, res)=>{
-    res.status(404).send({error:'unknown endpoint'})
+app.delete('/api/notes/:id', (req, res, next) => {
+    Note.findByIdAndDelete(req.params.id)
+        .then(result => {
+            response.status(204).end()
+        })
+        .catch(error => next(error))
+})
+
+const unknownEndpoint = (req, res) => {
+    res.status(404).send({ error: 'unknown endpoint' })
 }
 app.use(unknownEndpoint)
 
-const errorHandler = (error, req, res, next)=>{
+const errorHandler = (error, req, res, next) => {
     console.error(error.message)
 
-    if(error.name === 'CastError'){
-        return res.status(400).send({error:'malformatted id'})
+    if (error.name === 'CastError') {
+        return res.status(400).send({ error: 'malformatted id' })
     }
     next(error)
 }
@@ -142,17 +150,17 @@ app.use(errorHandler)
 
 
 //another postman code
-   /* const note = {
-        content: body.content,
-        important: Boolean(body.important) || false,
-        id: generatedId(),
-    }
+/* const note = {
+     content: body.content,
+     important: Boolean(body.important) || false,
+     id: generatedId(),
+ }
  
-    notes = notes.concat(note)
+ notes = notes.concat(note)
 
-    //console.log(note)
-    
-    res.json(note)
+ //console.log(note)
+ 
+ res.json(note)
 })*/
 
 //app.listen(PORT)
