@@ -12,7 +12,7 @@ app.use(express.static('dist'))
 
 //adding data to server
 app.use(express.json())
-app.use(requestLogger)
+//app.use(requestLogger)
 
 const password = process.argv[2]
 
@@ -107,10 +107,7 @@ app.post('/api/notes',(req,res)=>{
         res.json(savedNote)
     })
 })
-const unknownEndpoint = (req, res)=>{
-    res.status(404).send({error:'unknown endpoint'})
-}
-app.use(unknownEndpoint)
+
 
 
 app.get('/api/notes/:id',(req,res,next)=>{
@@ -124,6 +121,11 @@ app.get('/api/notes/:id',(req,res,next)=>{
     })
         .catch(error=>next(error))
 })
+
+const unknownEndpoint = (req, res)=>{
+    res.status(404).send({error:'unknown endpoint'})
+}
+app.use(unknownEndpoint)
 
 const errorHandler = (error, req, res, next)=>{
     console.error(error.message)
