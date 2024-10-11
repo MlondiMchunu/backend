@@ -91,7 +91,7 @@ const generatedId = () => {
         })
     }*/
 
-app.post('/api/notes', (req, res) => {
+app.post('/api/notes', (req, res,next) => {
     const body = req.body
 
     if (body.content === undefined) {
@@ -106,6 +106,7 @@ app.post('/api/notes', (req, res) => {
     note.save().then(savedNote => {
         res.json(savedNote)
     })
+    .catch(error=>next(error))
 })
 
 app.get('/api/notes',(req,res)=>{
