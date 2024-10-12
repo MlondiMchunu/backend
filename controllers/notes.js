@@ -18,3 +18,18 @@ notesRouter.get('/:id',(req,res,next)=>{
         })
         .catch(error => next(error))
 })
+
+notesRouter.post('/',(req,res,next)=>{
+    const body = req.body
+
+    const note = new Note({
+        content: body.content,
+        important: body.important || false,
+    })
+
+    note.save()
+        .then(savedNote=>{
+            res.json(savedNote)
+        })
+        .catch(error=> next(error))
+})
