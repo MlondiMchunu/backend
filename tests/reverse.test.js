@@ -17,4 +17,6 @@ test('reverse of react',()=>{
 
 test('reverse of saippuakauppias',()=>{
     const result = reverse('saippuakauppias')
+
+    assert.strictEqual(result, 'saippuakauppias')
 })
