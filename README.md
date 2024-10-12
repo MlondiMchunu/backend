@@ -21,6 +21,7 @@ Latest deployment
 
 Deployment after MONGODB environment variables
 
-![image](https://github.com/user-attachments/assets/14863991-dc29-4aef-a264-68592f900e56)
+![image](https://github.com/user-attachments/assets/281874bd-e2f6-4473-a051-3c88e98cf4b2)
+
 
 
