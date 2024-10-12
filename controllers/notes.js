@@ -33,3 +33,11 @@ notesRouter.post('/',(req,res,next)=>{
         })
         .catch(error=> next(error))
 })
+
+notesRouter.delete('/:id',(req,res,next)=>{
+    Note.findByIdAndDelete(req.params.id)
+        .then(()=>{
+            res.status(204).end()
+        })
+        .catch(error => next(error))
+})
