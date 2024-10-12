@@ -1,30 +1,30 @@
 //const http = require('http')
-require('dotenv').config()
-const Note = require('./models/note')
+//require('dotenv').config()
+//const Note = require('./models/note')
 
-const express = require('express')
+//const express = require('express')
 //const app = express()
-const cors = require('cors')
-const mongoose = require('mongoose')
+//const cors = require('cors')
+//const mongoose = require('mongoose')
 
 const app = require('./app')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
 
-app.use(cors())
-app.use(express.static('dist'))
+//app.use(cors())
+//app.use(express.static('dist'))
 
 //adding data to server
-app.use(express.json())
+//app.use(express.json())
 //app.use(requestLogger)
 
-const password = process.argv[2]
+//const password = process.argv[2]
 
 
 
-const PORT = process.env.PORT || 3002
+//const PORT = process.env.PORT || 3002
 
-let notes = [
+/*let notes = [
     {
         id: '1',
         content: 'HTML is easy',
@@ -45,6 +45,7 @@ let notes = [
         important: true
     }
 ]
+*/
 
 /*const app = http.createServer((req,res)=>{
     res.writeHead(200,{'Content-Type':'application/json'})
@@ -54,9 +55,10 @@ let notes = [
 */
 
 /** Fetching Resources */
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     res.send('<h4>Hello from Server!!</h4>')
 })
+    */
 
 
 /*
@@ -72,19 +74,21 @@ app.get('/api/notes/:id', (req, res) => {
 })*/
 
 /**Deleting Resources!! */
-app.delete('/api/notes/:id', (req, res) => {
+/*app.delete('/api/notes/:id', (req, res) => {
     const id = req.params.id
     const note = notes.filter(note => note.id === id)
 
     res.status(204).send(`Note ${note} deleted`)
 })
+    */
 
-
+/*
 const generatedId = () => {
     const maxId = notes.length > 0
         ? Math.max(...notes.map(n => Number(n.id)))
         : 0
 }
+        */
 //this is postman code
 /*app.post('./api/notes',(req,res)=>{
     const body = req.body
@@ -95,7 +99,7 @@ const generatedId = () => {
         })
     }*/
 
-app.post('/api/notes', (req, res,next) => {
+/*app.post('/api/notes', (req, res,next) => {
     const body = req.body
 
     if (body.content === undefined) {
@@ -166,7 +170,8 @@ app.put('/api/notes/:id',(req,res,next)=>{
         })
         .catch(error=>next(error))
 })
-
+        */
+/*
 const unknownEndpoint = (req, res) => {
     res.status(404).send({ error: 'unknown endpoint' })
 }
@@ -182,9 +187,10 @@ const errorHandler = (error, req, res, next) => {
     }
     next(error)
 }
+    */
 
 //error handling middlerware has to be the last loaded middleware
-app.use(errorHandler)
+//app.use(errorHandler)
 
 
 
