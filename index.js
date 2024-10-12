@@ -7,6 +7,9 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 
+const config = require('./utils/config')
+const logger = require('./utils/logger')
+
 app.use(cors())
 app.use(express.static('dist'))
 
@@ -201,5 +204,6 @@ app.use(errorHandler)
 //app.listen(PORT)
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+    //console.log(`Server is running on port ${PORT}`)
+    logger.info(`Server running on port ${config.PORT}`)
 })
