@@ -8,3 +8,9 @@ test('reverse of a', ()=>{
 
     assert.strictEqual(result, 'a')
 })
+
+test('reverse of react',()=>{
+    const result = reverse('react')
+
+    assert.strictEqual(result, 'tcaer')
+})
