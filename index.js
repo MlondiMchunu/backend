@@ -210,7 +210,7 @@ const errorHandler = (error, req, res, next) => {
 
 //app.listen(PORT)
 
-app.listen(PORT, () => {
+app.listen(config.PORT, () => {
     //console.log(`Server is running on port ${PORT}`)
     logger.info(`Server running on port ${config.PORT}`)
 })
