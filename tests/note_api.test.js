@@ -82,13 +82,16 @@ test('a valid note can be added',async()=>{
     await api
         .post('/api/notes')
         .send(newNote)
+        .expect(201)
         .expect('Content-Type', /application\/json/)
 
+        const notesAtEnd = await helper.notesInDb()
+        assert.strictEqual(notesAtEnd.length, helper.initialNotes.length + 1)
         const res = await api.get('/api/notes')
 
-        const contents = res.body.map(r=>r.content)
+        const contents = notesAtEnd.map(n=>n.content)
 
-        assert.strictEqual(res.body.length, helper.initialNotes.length + 1)
+        //assert.strictEqual(res.body.length, helper.initialNotes.length + 1)
 
         assert((contents.includes('async/await simplifies making async calls')))
 })
