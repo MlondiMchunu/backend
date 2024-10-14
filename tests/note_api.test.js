@@ -21,7 +21,9 @@ test('there are two notes',async()=>{
 test('the first note is about HTTP methods', async()=>{
     const res = await api.get ('/api/notes')
 
-    
+    const contents = res.body.map(e=>e.content)
+
+    assert.strictEqual(contents.includes('HTML is easy'),true)
 })
 
 after(async()=>{
