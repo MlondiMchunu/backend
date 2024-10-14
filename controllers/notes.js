@@ -39,20 +39,14 @@ notesRouter.post('/', async (req, res, next) => {
         content: body.content,
         important: body.important || false,
     })
-    //use try catch for error handling in async await
-    try {
-        const savedNote = await note.save()
-        res.status(201).json(savedNote)
-    } catch (exception) {
-        next(exception)
-    }
-
+    const savedNote = await note.save()
+    res.status(201).json(savedNote)
 })
 
 notesRouter.delete('/:id', async (req, res, next) => {
-  
-        await Note.findByIdAndDelete(req.params.id)
-        res.status(204).end()
+
+    await Note.findByIdAndDelete(req.params.id)
+    res.status(204).end()
 
 })
 
