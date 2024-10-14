@@ -28,7 +28,7 @@ notesRouter.get('/:id',(req,res,next)=>{
         .catch(error => next(error))
 })
 
-notesRouter.post('/',(req,res,next)=>{
+notesRouter.post('/', (req,res,next)=>{
     const body = req.body
 
     const note = new Note({
@@ -36,9 +36,9 @@ notesRouter.post('/',(req,res,next)=>{
         important: body.important || false,
     })
 
-    note.save()
+   note.save()
         .then(savedNote=>{
-            res.json(savedNote)
+            res.status(201).json(savedNote)
         })
         .catch(error=> next(error))
 })

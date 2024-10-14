@@ -27,7 +27,7 @@ beforeEach(async()=>{
     await noteObject.save()
 })
 
-test('notes are returned as json', async()=>{
+test.only('notes are returned as json', async()=>{
     await api 
         .get('/api/notes')
         .expect(200)
@@ -55,12 +55,32 @@ beforeEach(async()=>{
     await noteObject.save()
 })
 
-test.only('the first note is about HTTP methods', async()=>{
+test('the first note is about HTTP methods', async()=>{
     const res = await api.get ('/api/notes')
 
     const contents = res.body.map(e=>e.content)
 
     assert.strictEqual(contents.includes('HTML is easy'),true)
+})
+
+test('a valid note can be added',async()=>{
+    const newNote = {
+        content: 'async/await simplifies making async calls',
+        important: true,
+    }
+
+    await api
+        .post('/api/notes')
+        .send(newNote)
+        .expect('Content-Type', /application\/json/)
+
+        const res = await api.get('/api/notes')
+
+        const contents = res.body.map(r=>r.content)
+
+        assert.strictEqual(res.body.length, initialNotes.length + 1)
+
+        assert((contents.includes('async/await simplifies making async calls')))
 })
 
 after(async()=>{
