@@ -3,12 +3,13 @@ const assert = require('node:assert')
 const Note = require('../models/note')
 
 const mongoose = require('mongoose')
+const helper = require('../test_helper')
 const supertest = require('supertest')
 const app = require('../app')
 
 const api = supertest(app)
 
-const initialNotes = [
+/*const initialNotes = [
     {
         content: 'HTML is easy',
         important: false,
@@ -18,12 +19,13 @@ const initialNotes = [
         important: true,
     },
 ]
+    */
 
 beforeEach(async()=>{
     await Note.deleteMany({})
-    let noteObject = new Note(initialNotes[0])
+    let noteObject = new Note(helper.initialNotes[0])
     await noteObject.save()
-    noteObject = new Note(initialNotes[1])
+    noteObject = new Note(helper.initialNotes[1])
     await noteObject.save()
 })
 
@@ -36,9 +38,9 @@ test.only('notes are returned as json', async()=>{
 
 beforeEach(async()=>{
     await Note.deleteMany({})
-    let noteObject = new Note(initialNotes[0])
+    let noteObject = new Note(helper.initialNotes[0])
     await noteObject.save()
-    noteObject = new Note(initialNotes[1])
+    noteObject = new Note(helper.initialNotes[1])
     await noteObject.save()
 })
 
@@ -49,9 +51,9 @@ test('there are two notes',async()=>{
 })
 beforeEach(async()=>{
     await Note.deleteMany({})
-    let noteObject = new Note(initialNotes[0])
+    let noteObject = new Note(helper.initialNotes[0])
     await noteObject.save()
-    noteObject = new Note(initialNotes[1])
+    noteObject = new Note(helper.initialNotes[1])
     await noteObject.save()
 })
 
