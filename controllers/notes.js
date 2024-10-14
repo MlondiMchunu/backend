@@ -3,11 +3,12 @@ const Note = require('../models/note')
 
 
 //callback
-notesRouter.get('/',(req,res)=>{
+/*notesRouter.get('/',(req,res)=>{
    Note.find({}).then(notes => {
         res.json(notes)
     })
 })
+    */
 
 //promise 
 notesRouter.get('/',async(req,res)=>{
