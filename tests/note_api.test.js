@@ -27,7 +27,7 @@ beforeEach(async()=>{
     await noteObject.save()
 })
 
-test('notes are returned as json', async()=>{
+test.only('notes are returned as json', async()=>{
     await api 
         .get('/api/notes')
         .expect(200)
@@ -42,7 +42,7 @@ beforeEach(async()=>{
     await noteObject.save()
 })
 
-test('there are two notes',async()=>{
+test.only('there are two notes',async()=>{
     const res = await api.get('/api/notes')
 
     assert.strictEqual(res.body.length, 2)
@@ -55,7 +55,7 @@ beforeEach(async()=>{
     await noteObject.save()
 })
 
-test('the first note is about HTTP methods', async()=>{
+test.only('the first note is about HTTP methods', async()=>{
     const res = await api.get ('/api/notes')
 
     const contents = res.body.map(e=>e.content)
