@@ -42,7 +42,7 @@ beforeEach(async()=>{
     await noteObject.save()
 })
 
-test.only('there are two notes',async()=>{
+test('there are two notes',async()=>{
     const res = await api.get('/api/notes')
 
     assert.strictEqual(res.body.length, 2)
