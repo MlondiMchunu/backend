@@ -33,10 +33,25 @@ test('notes are returned as json', async()=>{
         .expect('Content-Type', /application\/json/)
 })
 
+beforeEach(async()=>{
+    await Note.deleteMany({})
+    let noteObject = new Note(initialNotes[0])
+    await noteObject.save()
+    noteObject = new Note(initialNotes[1])
+    await noteObject.save()
+})
+
 test('there are two notes',async()=>{
     const res = await api.get('/api/notes')
 
     assert.strictEqual(res.body.length, 2)
+})
+beforeEach(async()=>{
+    await Note.deleteMany({})
+    let noteObject = new Note(initialNotes[0])
+    await noteObject.save()
+    noteObject = new Note(initialNotes[1])
+    await noteObject.save()
 })
 
 test('the first note is about HTTP methods', async()=>{
