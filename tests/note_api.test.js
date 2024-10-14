@@ -3,7 +3,7 @@ const assert = require('node:assert')
 const Note = require('../models/note')
 
 const mongoose = require('mongoose')
-const helper = require('../test_helper')
+const helper = require('./test_helper')
 const supertest = require('supertest')
 const app = require('../app')
 
@@ -21,6 +21,8 @@ const api = supertest(app)
 ]
     */
 
+
+
 beforeEach(async()=>{
     await Note.deleteMany({})
     let noteObject = new Note(helper.initialNotes[0])
@@ -34,6 +36,12 @@ test.only('notes are returned as json', async()=>{
         .get('/api/notes')
         .expect(200)
         .expect('Content-Type', /application\/json/)
+})
+
+test('all notes are returned',async()=>{
+    const res = await api.get('/api/notes')
+
+    assert.strictEqual(res.body.length, helper.initialNotes.length)
 })
 
 beforeEach(async()=>{
@@ -80,7 +88,7 @@ test('a valid note can be added',async()=>{
 
         const contents = res.body.map(r=>r.content)
 
-        assert.strictEqual(res.body.length, initialNotes.length + 1)
+        assert.strictEqual(res.body.length, helper.initialNotes.length + 1)
 
         assert((contents.includes('async/await simplifies making async calls')))
 })
@@ -97,7 +105,7 @@ test.only('note without content is not added',async()=>{
 
         const res = await api.get('/api/notes')
 
-        assert.strictEqual(res.body.length, initialNotes.length)
+        assert.strictEqual(res.body.length, helper.initialNotes.length)
 })
 
 after(async()=>{
