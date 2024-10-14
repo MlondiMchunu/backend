@@ -51,12 +51,24 @@ test('all notes are returned',async()=>{
     assert.strictEqual(res.body.length, helper.initialNotes.length)
 })
 
-beforeEach(async()=>{
+/*beforeEach(async()=>{
     await Note.deleteMany({})
     let noteObject = new Note(helper.initialNotes[0])
     await noteObject.save()
     noteObject = new Note(helper.initialNotes[1])
     await noteObject.save()
+})
+    */
+beforeEach(async()=>{
+    await Note.deleteMany({})
+    console.log('cleared')
+
+    helper.initialNotes.forEach(async(note)=>{
+        let noteObject = new Note(note)
+        await noteObject.save()
+        console.log('saved')
+    })
+    console.log('done')
 })
 
 test('there are two notes',async()=>{
@@ -66,10 +78,14 @@ test('there are two notes',async()=>{
 })
 beforeEach(async()=>{
     await Note.deleteMany({})
-    let noteObject = new Note(helper.initialNotes[0])
-    await noteObject.save()
-    noteObject = new Note(helper.initialNotes[1])
-    await noteObject.save()
+    console.log('cleared')
+
+    helper.initialNotes.forEach(async(note)=>{
+        let noteObject = new Note(note)
+        await noteObject.save()
+        console.log('saved')
+    })
+    console.log('done')
 })
 
 test('the first note is about HTTP methods', async()=>{
