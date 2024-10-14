@@ -106,7 +106,7 @@ test.only('note without content is not added',async()=>{
         .send(newNote)
         .expect(400)
 
-        const res = await api.get('/api/notes')
+        const notesAtEnd = await helper.notesInDb()
 
         assert.strictEqual(res.body.length, helper.initialNotes.length)
 })
