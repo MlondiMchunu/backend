@@ -12,6 +12,12 @@ test('notes are returned as json', async()=>{
         .expect('Content-Type', /application\/json/)
 })
 
+test('there are two notes',async()=>{
+    const res = await api.get('/api/notes')
+
+    assert.strictEqual(res.body.length, 2)
+})
+
 after(async()=>{
     await mongoose.connection.close()
 })
