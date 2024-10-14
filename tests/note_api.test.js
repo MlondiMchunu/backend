@@ -18,6 +18,12 @@ test('there are two notes',async()=>{
     assert.strictEqual(res.body.length, 2)
 })
 
+test('the first note is about HTTP methods', async()=>{
+    const res = await api.get ('/api/notes')
+
+    
+})
+
 after(async()=>{
     await mongoose.connection.close()
 })
