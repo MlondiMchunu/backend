@@ -22,11 +22,14 @@ const api = supertest(app)
     */
 
 
-
+//function saves 1st 2 notes from the helper.initialNotes array
+//into the DB with 2 separate operations
 beforeEach(async()=>{
     await Note.deleteMany({})
+
     let noteObject = new Note(helper.initialNotes[0])
     await noteObject.save()
+
     noteObject = new Note(helper.initialNotes[1])
     await noteObject.save()
 })
@@ -111,7 +114,7 @@ test.only('note without content is not added',async()=>{
         assert.strictEqual(notesAtEnd.length, helper.initialNotes.length)
 })
 
-test('a specific note can be viewd', async()=>{
+test('a specific note can be viewed', async()=>{
     const notesAtStart = await helper.notesInDb()
 
     const noteToView = notesAtStart[0]
@@ -121,7 +124,7 @@ test('a specific note can be viewd', async()=>{
         .expect(200)
         .expect('Content-Type',/application\/json/)
 
-        assert.deepStrictEqual(resultNOte.body, noteToView)
+        assert.deepStrictEqual(resultNote.body, noteToView)
 })
 
 test('a note can be deleted', async () => {
