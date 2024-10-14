@@ -108,7 +108,7 @@ test.only('note without content is not added',async()=>{
 
         const notesAtEnd = await helper.notesInDb()
 
-        assert.strictEqual(res.body.length, helper.initialNotes.length)
+        assert.strictEqual(notesAtEnd.length, helper.initialNotes.length)
 })
 
 after(async()=>{
