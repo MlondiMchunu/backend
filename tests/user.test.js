@@ -8,6 +8,6 @@ describe('when there is initially one user in db',()=>{
         const passwordHash = await bcrypt.hash('sekret',10)
         const user = new User({username:'root',passwordHash})
 
-        await user.save
+        await user.save()
     })
 })
