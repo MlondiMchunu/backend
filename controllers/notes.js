@@ -13,7 +13,7 @@ const User = require('../models/user')
 
 //promise 
 notesRouter.get('/', async (req, res) => {
-    const notes = await Note.find({})
+    const notes = await Note.find({}).populate('user',{content: 1, important:1})
     res.json(notes)
 })
 
