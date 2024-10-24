@@ -19,7 +19,7 @@ usersRouter.post('/',async(req,res)=>{
     res.status(201).json(savedUser)
 })
 
-userRouter,get('/',async(req,res)=>{
+usersRouter.get('/',async(req,res)=>{
     const users = await User.find({})
     response.json(users)
 })
