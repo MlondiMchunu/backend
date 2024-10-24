@@ -45,9 +45,11 @@ notesRouter.post('/', async (req, res, next) => {
         user: user.id
     })
     const savedNote = await note.save()
-    res.status(201).json(savedNote)
     user.notes = user.notes.concat(savedNote._id)
     await user.save()
+
+    res.status(201).json(savedNote)
+
 })
 
 notesRouter.delete('/:id', async (req, res, next) => {
