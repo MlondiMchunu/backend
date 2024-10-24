@@ -37,17 +37,17 @@ notesRouter.get('/:id', async (req, res, next) => {
 notesRouter.post('/', async (req, res, next) => {
     const body = req.body
 
-    const user = await User.findById(body.userId)
+    //const user = await User.findById(body.userId)
 
     const note = new Note({
         content: body.content,
         important: body.important || false,
-        user: user.id
+        //user: user.id
     })
     console.log(note.content)
     const savedNote = await note.save()
-    user.notes = user.notes.concat(savedNote._id)
-    await user.save()
+    //user.notes = user.notes.concat(savedNote._id)
+    //await user.save()
 
     res.status(201).json(savedNote)
 
@@ -56,7 +56,7 @@ notesRouter.post('/', async (req, res, next) => {
 notesRouter.delete('/:id', async (req, res, next) => {
 
     await Note.findByIdAndDelete(req.params.id)
-    res.status(204).end()
+    res.status(204).json({message:"Note deleted"})
 
 })
 
