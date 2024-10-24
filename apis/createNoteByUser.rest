@@ -2,7 +2,7 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-    "content":"User id of the note is sent along with the request",
-    "important":true,
+    "content":"NodeJS is easy",
+    "important":false,
     "userId":"67199921eec0affa2398e270"
 }
