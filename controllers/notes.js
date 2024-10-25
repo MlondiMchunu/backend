@@ -1,6 +1,7 @@
 const notesRouter = require('express').Router()
 const Note = require('../models/note')
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 
 
 //callback
@@ -12,6 +13,7 @@ const User = require('../models/user')
     */
 
 //promise 
+
 notesRouter.get('/', async (req, res) => {
     const notes = await Note.find({}).populate('user',{content: 1, important:1})
     res.json(notes)
@@ -34,8 +36,18 @@ notesRouter.get('/:id', async (req, res, next) => {
     }
 })
 
+//limiting creating new notes to authorised users
+const getTokenFrom = req =>{
+    const authorization = req.get('authorization')
+    if(authorization && authorization.startsWith('Bearer ')){
+        return authorization.replace('Bearer ','')
+    }
+    return null
+}
+
 notesRouter.post('/', async (req, res, next) => {
     const body = req.body
+
 
     const user = await User.findById(body.userId)
 
