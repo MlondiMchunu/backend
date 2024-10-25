@@ -1,5 +1,6 @@
 POST http://localhost:3001/api/notes
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphdmEiLCJpZCI6IjY3MWI3NTEwMGMyMDQ0OTE4NzAzMGQxZCIsImlhdCI6MTcyOTg1Mjc1NH0._N9uxIcoaDhb_N2zI9psPjKQREtH4MkPNC-GDQa4ZqM
 
 {
     "content":"NodeJS is easy",
