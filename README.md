@@ -7,6 +7,7 @@ This project also has parts on TypeScript, React Native, and Continuous integrat
 Other elements include debugging applications, container technology, configuration, managing runtime environments, and databases.
 
 For user authentication : **JWT**
+
 Automated Tests : **Jest**
 
 CI : **Github Actions**
