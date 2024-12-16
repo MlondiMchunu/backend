@@ -32,6 +32,10 @@ app.get('/health', (req, res) => {
     res.send('ok')
   })
 
+  app.get('/version', (req, res) => {
+    res.send('1') 
+  })
+
 
 app.use('/api/notes', notesRouter)
 app.use('/api/users',usersRouter)
