@@ -1,2 +1,2 @@
-- name: Render Deployment
-  uses: sws2apps/render-deployment@v1.8.0
+- name: Trigger Deployment
+  run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }} 
